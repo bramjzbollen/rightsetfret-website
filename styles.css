@@ -1,0 +1,111 @@
+/* RightSetFret — marketing + legal site
+   Warm "paper" aesthetic matching the app: cream background, ink text,
+   warm orange accent, serif headings. */
+
+:root {
+    --paper: #f6f1e7;
+    --paper-soft: #fffdf8;
+    --ink: #2a2622;
+    --ink-soft: #6f675d;
+    --accent: #e2752f;
+    --accent-dark: #c75f1e;
+    --rule: #e4dccd;
+    --shadow: 0 18px 40px rgba(60, 45, 25, 0.10);
+    --radius: 18px;
+    --maxw: 980px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+
+a { color: var(--accent-dark); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+/* Nav */
+.nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 22px; max-width: var(--maxw); margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+.brand .logo {
+    width: 40px; height: 40px; border-radius: 11px;
+    background: linear-gradient(135deg, var(--accent), #f2a65a);
+    display: grid; place-items: center; color: #fff; font-size: 20px;
+    box-shadow: var(--shadow);
+}
+.brand .name { font-family: Georgia, serif; font-size: 20px; }
+.nav .links a { color: var(--ink-soft); margin-left: 20px; font-size: 15px; }
+
+/* Hero */
+.hero { text-align: center; padding: 56px 22px 40px; }
+.hero .icon {
+    width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 22px;
+    background: linear-gradient(135deg, var(--accent), #f4ad5f);
+    display: grid; place-items: center; font-size: 46px; color: #fff;
+    box-shadow: var(--shadow);
+}
+.hero h1 { font-size: clamp(34px, 6vw, 54px); letter-spacing: -0.5px; }
+.hero .tagline {
+    font-size: clamp(17px, 2.4vw, 21px); color: var(--ink-soft);
+    max-width: 620px; margin: 16px auto 0;
+}
+.cta { margin-top: 28px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn {
+    display: inline-block; padding: 13px 26px; border-radius: 999px;
+    font-weight: 600; font-size: 16px;
+}
+.btn-primary { background: var(--accent); color: #fff; box-shadow: var(--shadow); }
+.btn-primary:hover { background: var(--accent-dark); text-decoration: none; }
+.btn-ghost { border: 1px solid var(--rule); color: var(--ink); }
+.btn-ghost:hover { background: var(--paper-soft); text-decoration: none; }
+.soon { color: var(--ink-soft); font-size: 14px; margin-top: 14px; }
+
+/* Features */
+.features { padding: 30px 0 50px; }
+.grid {
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.card {
+    background: var(--paper-soft); border: 1px solid var(--rule);
+    border-radius: var(--radius); padding: 24px;
+}
+.card .emoji { font-size: 28px; }
+.card h3 { font-size: 19px; margin: 12px 0 6px; }
+.card p { color: var(--ink-soft); font-size: 15px; }
+
+.section-title { text-align: center; font-size: clamp(26px, 4vw, 34px); margin: 24px 0 6px; }
+.section-sub { text-align: center; color: var(--ink-soft); margin-bottom: 30px; }
+
+/* Legal / content pages */
+.doc { background: var(--paper-soft); border: 1px solid var(--rule);
+    border-radius: var(--radius); padding: 38px clamp(22px, 5vw, 54px); margin: 30px 0 50px; }
+.doc h1 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 6px; }
+.doc .updated { color: var(--ink-soft); font-size: 14px; margin-bottom: 26px; }
+.doc h2 { font-size: 21px; margin: 28px 0 10px; }
+.doc p, .doc li { color: var(--ink); font-size: 16px; }
+.doc ul { margin: 8px 0 8px 22px; }
+.doc li { margin-bottom: 6px; }
+.doc a { font-weight: 600; }
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--rule); margin-top: 20px;
+    padding: 30px 22px; color: var(--ink-soft); font-size: 14px;
+}
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; }
+footer a { color: var(--ink-soft); }
+footer .legal { font-size: 13px; }
