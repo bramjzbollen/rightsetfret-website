@@ -115,6 +115,9 @@ a:hover { text-decoration: underline; }
 }
 .tutorial h3 { font-size: 17px; margin-top: 14px; }
 
+/* Closing CTA */
+.closing { text-align: center; padding: 20px 22px 60px; }
+
 /* Legal / content pages */
 .doc { background: var(--paper-soft); border: 1px solid var(--rule);
     border-radius: var(--radius); padding: 38px clamp(22px, 5vw, 54px); margin: 30px 0 50px; }
