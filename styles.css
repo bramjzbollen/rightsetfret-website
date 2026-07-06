@@ -48,6 +48,12 @@ a:hover { text-decoration: underline; }
 .brand .name { font-family: Georgia, serif; font-size: 20px; }
 .nav .links a { color: var(--ink-soft); margin-left: 20px; font-size: 15px; }
 
+/* Instagram link (nav + footer) */
+.ig-link { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; }
+.ig-link svg { width: 18px; height: 18px; display: block; }
+.ig-link:hover { text-decoration: none; color: var(--accent-dark); }
+.nav .links .ig-link { color: var(--ink); }
+
 /* Hero */
 .hero { text-align: center; padding: 34px 22px 40px; }
 .hero-video { max-width: 320px; margin: 0 auto 34px; }
