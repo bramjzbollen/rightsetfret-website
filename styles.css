@@ -97,7 +97,7 @@ a:hover { text-decoration: underline; }
 .features { padding: 30px 0 50px; }
 .grid {
     display: grid; gap: 18px;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 .card {
     background: var(--paper-soft); border: 1px solid var(--rule);
@@ -106,6 +106,13 @@ a:hover { text-decoration: underline; }
 .card .emoji { font-size: 28px; }
 .card h3 { font-size: 19px; margin: 12px 0 6px; }
 .card p { color: var(--ink-soft); font-size: 15px; }
+.card .badge {
+    display: inline-block; vertical-align: 3px; margin-left: 7px;
+    background: var(--accent); color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px; white-space: nowrap;
+}
 
 .section-title { text-align: center; font-size: clamp(26px, 4vw, 34px); margin: 24px 0 6px; }
 .section-sub { text-align: center; color: var(--ink-soft); margin-bottom: 30px; }
