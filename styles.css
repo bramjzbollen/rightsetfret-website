@@ -1,35 +1,54 @@
-/* RightSetFret — marketing + legal site
-   Warm "paper" aesthetic matching the app: cream background, ink text,
-   warm orange accent, serif headings. */
+/* RightSetFret — marketing + legal site, styled after the app's "Klassiek"
+   theme: a family-cookbook carnet. Paper canvas with a faint blue squared
+   grid, paper-sheet cards held down by tape, burnt-orange accent over sepia
+   ink, Georgia titles on a serif body, and handwriting in pen blue.
+   Tokens mirror ios/Receptenboek/Views/Theme/KlassiekTheme.swift.
+   Carnet decoration is dosed at identity moments only (spec §2.3). */
 
 :root {
-    --paper: #f6f1e7;
-    --paper-soft: #fffdf8;
-    --ink: #2a2622;
-    --ink-soft: #6f675d;
-    --accent: #e2752f;
-    --accent-dark: #c75f1e;
-    --rule: #e4dccd;
-    --shadow: 0 18px 40px rgba(60, 45, 25, 0.10);
-    --radius: 18px;
+    --paper: #eee7d6;        /* canvas — papier */
+    --paper-soft: #faf4e4;   /* papiervel (cards, sheets) */
+    --ink: #2a2017;          /* warm black-brown */
+    --ink-soft: #6a5436;     /* sepia ink */
+    --accent: #c96b2a;       /* burnt orange */
+    --accent-dark: #a9541f;  /* deeper burnt orange (hover) */
+    --maroon: #4a2018;       /* accentSecondary */
+    --rule: rgba(107, 84, 54, 0.28);
+    --tape: rgba(235, 222, 184, 0.65);
+    --note-ink: #29458c;     /* pen blue */
+    --grid-line: rgba(89, 115, 166, 0.10);
+
+    --shadow: 0 3px 10px rgba(42, 32, 23, 0.12);
+    --shadow-accent: 0 4px 12px rgba(201, 107, 42, 0.30);
+    --radius: 14px;
     --maxw: 980px;
+
+    --font-title: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --font-hand: "Noteworthy", "Bradley Hand", "Segoe Script", cursive;
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
 
+/* Paper canvas + faint blue squared-notebook grid (26px, like the app). */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--font-body);
     color: var(--ink);
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 26px 26px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+h1, h2, h3 { font-family: var(--font-title); font-weight: 700; line-height: 1.2; }
 
-a { color: var(--accent-dark); text-decoration: none; }
+a { color: var(--maroon); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
@@ -45,8 +64,9 @@ a:hover { text-decoration: underline; }
     object-fit: cover; display: block;
     box-shadow: var(--shadow);
 }
-.brand .name { font-family: Georgia, serif; font-size: 20px; }
+.brand .name { font-family: var(--font-title); font-size: 20px; }
 .nav .links a { color: var(--ink-soft); margin-left: 20px; font-size: 15px; }
+.nav .links a:hover { color: var(--accent-dark); }
 
 /* Instagram link (nav + footer) */
 .ig-link { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; }
@@ -60,87 +80,138 @@ a:hover { text-decoration: underline; }
 .hero-video video {
     display: block; width: 100%; aspect-ratio: 9 / 16;
     border-radius: 32px; border: 6px solid var(--ink);
-    background: var(--ink); box-shadow: var(--shadow);
+    background: var(--ink); box-shadow: 0 10px 26px rgba(42, 32, 23, 0.22);
 }
 .hero .icon {
     width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 22px;
     object-fit: cover; display: block;
     box-shadow: var(--shadow);
 }
-.hero h1 { font-size: clamp(34px, 6vw, 54px); letter-spacing: -0.5px; }
-.hero .tagline {
-    font-size: clamp(17px, 2.4vw, 21px); color: var(--ink-soft);
-    max-width: 620px; margin: 16px auto 0;
+.hero h1 { font-size: clamp(34px, 6vw, 54px); letter-spacing: -0.3px; }
+.hero h1::after {
+    content: ""; display: block; height: 3px; width: 92px;
+    margin: 18px auto 0; border-radius: 2px; background: var(--accent);
 }
+.hero .tagline {
+    font-size: clamp(17px, 2.4vw, 20px); color: var(--ink-soft);
+    max-width: 620px; margin: 18px auto 0;
+}
+
 .cta { margin-top: 28px; display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap; }
 .appstore-badge {
     display: inline-flex; align-items: center; gap: 11px;
     background: #000; color: #fff; border-radius: 12px;
     padding: 9px 22px 10px; box-shadow: var(--shadow);
+    font-family: var(--font-ui);
 }
 .appstore-badge:hover { text-decoration: none; background: #1d1d1f; }
 .appstore-badge svg { width: 26px; height: 32px; }
 .appstore-badge .badge-text { display: flex; flex-direction: column; text-align: left; line-height: 1.15; }
 .appstore-badge small { font-size: 12px; font-weight: 400; }
 .appstore-badge strong { font-size: 21px; font-weight: 600; letter-spacing: -0.2px; }
+
 .btn {
     display: inline-block; padding: 13px 26px; border-radius: 999px;
     font-weight: 600; font-size: 16px;
 }
-.btn-primary { background: var(--accent); color: #fff; box-shadow: var(--shadow); }
+.btn-primary {
+    background: var(--accent); color: #fff;
+    border: 1px solid rgba(74, 32, 24, 0.35);
+    box-shadow: var(--shadow-accent);
+}
 .btn-primary:hover { background: var(--accent-dark); text-decoration: none; }
-.btn-ghost { border: 1px solid var(--rule); color: var(--ink); }
-.btn-ghost:hover { background: var(--paper-soft); text-decoration: none; }
-.soon { color: var(--ink-soft); font-size: 14px; margin-top: 14px; }
+.btn-ghost { border: 1px solid var(--rule); color: var(--ink); background: var(--paper-soft); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--maroon); text-decoration: none; }
 
-/* Features */
-.features { padding: 30px 0 50px; }
+/* Handwritten note in pen blue — a line scribbled on the page. */
+.soon {
+    font-family: var(--font-hand); color: var(--note-ink);
+    font-size: 17px; margin-top: 16px;
+}
+
+/* Features — paper sheets, taped down, each leaning a hair the other way.
+   Keeps side padding so the tilt and the tape corner never touch the edge. */
+.features { padding: 30px 22px 50px; }
 .grid {
-    display: grid; gap: 18px;
+    display: grid; gap: 22px;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 .card {
+    position: relative;
     background: var(--paper-soft); border: 1px solid var(--rule);
     border-radius: var(--radius); padding: 24px;
+    box-shadow: var(--shadow);
 }
+.card::after {   /* tape holding the sheet's top-right corner */
+    content: ""; position: absolute; top: -7px; right: -7px;
+    width: 44px; height: 14px; border-radius: 2px;
+    background: var(--tape); border: 1px solid rgba(42, 32, 23, 0.05);
+    transform: rotate(-38deg);
+    box-shadow: 0 1px 2px rgba(42, 32, 23, 0.10);
+    pointer-events: none;
+}
+.card:nth-child(odd)  { transform: rotate(0.8deg); }
+.card:nth-child(even) { transform: rotate(-0.8deg); }
 .card .emoji { font-size: 28px; }
 .card h3 { font-size: 19px; margin: 12px 0 6px; }
 .card p { color: var(--ink-soft); font-size: 15px; }
 .card .badge {
     display: inline-block; vertical-align: 3px; margin-left: 7px;
     background: var(--accent); color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    border: 1px solid rgba(74, 32, 24, 0.35);
+    font-family: var(--font-ui);
     font-size: 10px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
-    padding: 3px 8px; border-radius: 999px; white-space: nowrap;
+    padding: 2px 8px; border-radius: 999px; white-space: nowrap;
 }
 
 .section-title { text-align: center; font-size: clamp(26px, 4vw, 34px); margin: 24px 0 6px; }
-.section-sub { text-align: center; color: var(--ink-soft); margin-bottom: 30px; }
+.section-title::after {
+    content: ""; display: block; height: 3px; width: 92px;
+    margin: 14px auto 0; border-radius: 2px; background: var(--accent);
+}
+.section-sub { text-align: center; color: var(--ink-soft); margin: 14px 0 30px; }
 
 /* Tutorials */
 .tutorials { padding: 10px 0 60px; }
-.tutorial-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 920px; margin: 0 auto; }
+.tutorial-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 920px; margin: 0 auto; gap: 18px; }
 .tutorial { text-align: center; }
 .tutorial video {
     display: block; width: 100%; aspect-ratio: 1320 / 2868;
     border-radius: 24px; border: 5px solid var(--ink);
-    background: var(--ink); box-shadow: var(--shadow);
+    background: var(--ink); box-shadow: 0 8px 20px rgba(42, 32, 23, 0.20);
 }
 .tutorial h3 { font-size: 17px; margin-top: 14px; }
 
 /* Closing CTA */
 .closing { text-align: center; padding: 20px 22px 60px; }
 
-/* Legal / content pages */
-.doc { background: var(--paper-soft); border: 1px solid var(--rule);
-    border-radius: var(--radius); padding: 38px clamp(22px, 5vw, 54px); margin: 30px 0 50px; }
+/* Legal / content pages — one big taped sheet of paper. */
+.doc {
+    position: relative;
+    background: var(--paper-soft); border: 1px solid var(--rule);
+    border-radius: var(--radius); padding: 38px clamp(22px, 5vw, 54px);
+    margin: 34px 0 50px; box-shadow: var(--shadow);
+}
+.doc::after {
+    content: ""; position: absolute; top: -7px; right: -7px;
+    width: 52px; height: 15px; border-radius: 2px;
+    background: var(--tape); border: 1px solid rgba(42, 32, 23, 0.05);
+    transform: rotate(-38deg);
+    box-shadow: 0 1px 2px rgba(42, 32, 23, 0.10);
+    pointer-events: none;
+}
 .doc h1 { font-size: clamp(28px, 5vw, 40px); margin-bottom: 6px; }
 .doc .updated { color: var(--ink-soft); font-size: 14px; margin-bottom: 26px; }
 .doc h2 { font-size: 21px; margin: 28px 0 10px; }
 .doc p, .doc li { color: var(--ink); font-size: 16px; }
-.doc ul { margin: 8px 0 8px 22px; }
-.doc li { margin-bottom: 6px; }
-.doc a { font-weight: 600; }
+/* ☞ replaces the bullet, as it replaces the step badge in the app. */
+.doc ul { list-style: none; margin: 10px 0; }
+.doc li { position: relative; padding-left: 28px; margin-bottom: 6px; }
+.doc li::before {
+    content: "☞"; position: absolute; left: 0; top: 0;
+    color: var(--accent); font-size: 15px; line-height: 1.6;
+}
+.doc a { font-weight: 600; color: var(--maroon); }
 
 /* Footer */
 footer {
@@ -149,4 +220,12 @@ footer {
 }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; align-items: center; }
 footer a { color: var(--ink-soft); }
+footer a:hover { color: var(--accent-dark); }
 footer .legal { font-size: 13px; }
+
+/* The tilt is decoration, not information — drop it, keep the tape. */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .card:nth-child(odd),
+    .card:nth-child(even) { transform: none; }
+}
