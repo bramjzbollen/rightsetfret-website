@@ -3,6 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Gedeelde recept-/lijst-links openen de app; is die niet geïnstalleerd,
+     dan blijft deze pagina als nette terugval staan. -->
+<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  var t = p.get('type'), scheme = null;
+  if (t === 'recept' && p.get('id')) scheme = 'rightsetfret://recept?id=' + encodeURIComponent(p.get('id'));
+  else if (t === 'lijst' && p.get('code')) scheme = 'rightsetfret://lijst?code=' + encodeURIComponent(p.get('code'));
+  if (scheme) { setTimeout(function(){ window.location.href = scheme; }, 300); }
+})();
+</script>
 <title>RightSetFret — Nooit meer een recept kwijt</title>
 <meta name="description" content="Zet recepten van Instagram, TikTok, Pinterest of een tijdschriftfoto in seconden om in een nette receptfiche. Laat AI je week plannen, orden alles met slimme tags en winkel met een lijst die jouw supermarkt kent. Probeer 7 dagen gratis.">
 <link rel="alternate" hreflang="nl" href="https://rightsetfret.studioplanb.be/">
