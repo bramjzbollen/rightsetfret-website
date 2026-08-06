@@ -80,19 +80,25 @@ src="https://www.facebook.com/tr?id=1018910594260070&ev=PageView&noscript=1"
         <h2>Usage statistics</h2>
         <p>To improve RightSetFret we collect anonymous usage statistics using <strong>PostHog</strong>. This data is processed on servers in the European Union and is never used to identify you.</p>
         <p>We measure which features are used — for example how often a recipe is imported or a meal plan is created — along with a few general characteristics of the installation: your device&rsquo;s language and region setting, the app version, the chosen theme, whether you have a subscription, and roughly how many recipes your collection holds (in broad brackets, such as &ldquo;25&ndash;49&rdquo;). Your installation is given a random number so that individual events can be grouped together. That number is not linked to your name, email address or Apple account.</p>
-        <p>What we do not collect: your recipes, photos, notes and shopping lists. Those stay on your device and in your own iCloud. We also do not track you across other apps or websites, and we do not share this data with advertisers.</p>
+        <p>What we do not collect: your recipes, photos, notes and shopping lists. Those stay on your device and in your own iCloud. We do not track you across other apps or websites.</p>
+
+        <h2>Ad measurement</h2>
+        <p>We advertise RightSetFret on Facebook and Instagram. To know which ads actually lead to an install &mdash; and so avoid spending ad money for nothing &mdash; the app uses the <strong>Meta</strong> SDK. It reports to Meta that the app was installed and opened, and whether you created an account.</p>
+        <p>This is deliberately limited. We do <strong>not</strong> ask permission to track you: you will never see the iOS prompt &ldquo;Allow RightSetFret to track you&rdquo;, and your advertising identifier (IDFA) is never read. Meta therefore only receives aggregated measurement data through Apple's own system, not a profile of you across apps. Your recipes, photos and lists are never shared with Meta.</p>
+        <p>You can switch this off in the app under <em>Settings &rarr; Usage statistics and ad measurement</em>. That stops both this measurement and the usage statistics.</p>
 
         <h2>Subscriptions and payments</h2>
         <p>Subscriptions and purchases are handled entirely by Apple (App Store). We do not receive or store <strong>any payment details</strong>. Managing and cancelling your subscription happens via your Apple ID settings.</p>
 
         <h2>What we don't do</h2>
-        <p>We do not sell your personal data and do not share it with advertisers.</p>
+        <p>We do not sell your personal data. We do not share any content &mdash; recipes, photos, notes or lists &mdash; with advertisers. The only thing an advertising platform receives from us is the limited install measurement described under &ldquo;Ad measurement&rdquo; above.</p>
 
         <h2>External services</h2>
         <ul>
             <li><strong>Apple</strong> — Sign in with Apple, iCloud storage and App Store payments</li>
             <li><strong>Anthropic</strong> — AI processing for recognising recipes</li>
             <li><strong>PostHog</strong> — anonymous usage statistics (processed in the EU)</li>
+            <li><strong>Meta (Facebook)</strong> — measurement of ad campaigns (installs and registrations, without IDFA)</li>
             <li><strong>Fly.io</strong> — hosting of our server service</li>
         </ul>
 
