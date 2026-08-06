@@ -235,10 +235,11 @@ footer .legal { font-size: 13px; }
 .nav .links .lang-btn { display: inline-flex; align-items: center; gap: 7px; background: none; border: 0; cursor: pointer; font: inherit; font-size: 15px; color: var(--ink-soft); padding: 4px 6px; }
 .nav .links .lang-btn:hover { color: var(--accent-dark); }
 .nav .links .lang-btn .flag { font-size: 19px; line-height: 1; }
+.nav .links .lang-btn .code { font-weight: 600; font-size: 14px; letter-spacing: .3px; }
 .nav .links .lang-btn .chev { font-size: 11px; transition: transform .2s ease; }
-.nav .links .lang:hover .lang-btn .chev, .nav .links .lang:focus-within .lang-btn .chev { transform: rotate(180deg); }
+.nav .links .lang.open .lang-btn .chev { transform: rotate(180deg); }
 .nav .links .lang-list { position: absolute; right: 0; top: 100%; margin: 8px 0 0; padding: 6px; list-style: none; min-width: 176px; background: #fffdf8; border: 1px solid rgba(0,0,0,.08); border-radius: 14px; box-shadow: 0 16px 38px rgba(40,25,10,.18); opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .18s ease, transform .18s ease, visibility .18s ease; z-index: 60; }
-.nav .links .lang:hover .lang-list, .nav .links .lang:focus-within .lang-list { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav .links .lang.open .lang-list { opacity: 1; visibility: visible; transform: translateY(0); }
 .nav .links .lang-list li { margin: 0; }
 .nav .links .lang-list a { display: flex; align-items: center; gap: 11px; margin: 0; padding: 9px 12px; border-radius: 9px; color: var(--ink); font-size: 15px; }
 .nav .links .lang-list a .flag { font-size: 20px; }
