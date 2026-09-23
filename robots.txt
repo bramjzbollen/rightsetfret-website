@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rightsetfret.studioplanb.be/sitemap.xml
