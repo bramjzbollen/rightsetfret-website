@@ -235,3 +235,9 @@ p { margin: 0; }
 
 /* Heel smalle schermen: alleen het logo in de nav */
 @media (max-width: 400px) { .brand .name { display: none; } .nav-inner { gap: 10px; } .btn-nav { padding: 9px 12px; } }
+
+/* Uitnodigingskaart (?type=uitnodiging&code=) */
+.invite-card { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; margin: 0 auto 28px; max-width: 560px; text-align: left; }
+.invite-card[hidden] { display: none; }
+.invite-card .invite-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 30px; font-weight: 700; letter-spacing: .14em; margin: 6px 0 10px; }
+.invite-card p { margin: 0 0 14px; color: var(--ink-2); font-size: 16px; }

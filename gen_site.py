@@ -18,6 +18,7 @@ ICON = {  # inline SVG's (20px), monochroom
 
 TEXT = {
  "nl": dict(
+  invite_title='Je bent uitgenodigd voor RightSetFret', invite_text='Download de app, tik op het welkomscherm op ‘Uitgenodigd? Voer je code in’ en vul deze code in. Jullie krijgen allebei 5 extra imports.', invite_copy='Kopieer code', invite_copied='Gekopieerd',
   title="RightSetFret — Van reel naar recept in 5 seconden",
   desc="Deel een recept van Instagram, TikTok of YouTube met RightSetFret en krijg meteen een nette receptfiche met ingrediënten, stappen en foto. Weekplanner en boodschappenlijst inbegrepen. 10 imports gratis.",
   h1="Van reel naar recept in 5 seconden.",
@@ -59,6 +60,7 @@ TEXT = {
   alts=dict(recept="Receptfiche met ingrediënten en stappen in RightSetFret", deelmenu="Het iOS-deelmenu met RightSetFret uitgelicht", import_="Sheet ‘Recept importeren’ met de invoerbronnen", kookmodus="Kookmodus met een stap en timer", collectie="Collectie met recepten en tags", frigo="Scherm ‘Wat kan ik koken?’ met ingrediënten uit de frigo", planning="Weekplanner met dieetkeuze", lijstje="Boodschappenlijst gesorteerd per winkelgang"),
  ),
  "en": dict(
+  invite_title="You're invited to RightSetFret", invite_text='Download the app, tap ‘Invited? Enter your code’ on the welcome screen and enter this code. You both get 5 extra imports.', invite_copy='Copy code', invite_copied='Copied',
   title="RightSetFret — From reel to recipe in 5 seconds",
   desc="Share a recipe from Instagram, TikTok or YouTube to RightSetFret and get a clean recipe card with ingredients, steps and a photo. Weekly planner and shopping list included. 10 free imports.",
   h1="From reel to recipe in 5 seconds.",
@@ -100,6 +102,7 @@ TEXT = {
   alts=dict(recept="Recipe card with ingredients and steps in RightSetFret", deelmenu="The iOS share sheet with RightSetFret highlighted", import_="‘Import recipe’ sheet with the input sources", kookmodus="Cooking mode with a step and timer", collectie="Collection with recipes and tags", frigo="‘What can I cook?’ screen with fridge ingredients", planning="Weekly planner with diet options", lijstje="Shopping list sorted by aisle"),
  ),
  "fr": dict(
+  invite_title='Tu es invité·e sur RightSetFret', invite_text="Télécharge l'app, touche « Invité·e ? Saisis ton code » sur l'écran d'accueil et saisis ce code. Vous recevez chacun 5 imports en plus.", invite_copy='Copier le code', invite_copied='Copié',
   title="RightSetFret — Du reel à la recette en 5 secondes",
   desc="Partage une recette d’Instagram, TikTok ou YouTube vers RightSetFret et obtiens une fiche recette claire avec ingrédients, étapes et photo. Planificateur de la semaine et liste de courses inclus. 10 imports gratuits.",
   h1="Du reel à la recette en 5 secondes.",
@@ -141,6 +144,7 @@ TEXT = {
   alts=dict(recept="Fiche recette avec ingrédients et étapes dans RightSetFret", deelmenu="Le menu de partage iOS avec RightSetFret en évidence", import_="Feuille « Importer une recette » avec les sources", kookmodus="Mode cuisine avec une étape et un minuteur", collectie="Collection avec recettes et tags", frigo="Écran « Qu’est-ce que je peux cuisiner ? »", planning="Planificateur de la semaine avec choix du régime", lijstje="Liste de courses triée par rayon"),
  ),
  "de": dict(
+  invite_title='Du bist zu RightSetFret eingeladen', invite_text='Lade die App, tippe auf dem Willkommensbildschirm auf „Eingeladen? Code eingeben“ und gib diesen Code ein. Ihr bekommt beide 5 Extra-Importe.', invite_copy='Code kopieren', invite_copied='Kopiert',
   title="RightSetFret — Vom Reel zum Rezept in 5 Sekunden",
   desc="Teile ein Rezept aus Instagram, TikTok oder YouTube mit RightSetFret und erhalte sofort eine übersichtliche Rezeptkarte mit Zutaten, Schritten und Foto. Wochenplaner und Einkaufsliste inklusive. 10 Importe gratis.",
   h1="Vom Reel zum Rezept in 5 Sekunden.",
@@ -182,6 +186,7 @@ TEXT = {
   alts=dict(recept="Rezeptkarte mit Zutaten und Schritten in RightSetFret", deelmenu="Das iOS-Teilen-Menü mit RightSetFret hervorgehoben", import_="Blatt „Rezept importieren“ mit den Quellen", kookmodus="Kochmodus mit einem Schritt und Timer", collectie="Sammlung mit Rezepten und Tags", frigo="Bildschirm „Was kann ich kochen?“", planning="Wochenplaner mit Ernährungsauswahl", lijstje="Einkaufsliste nach Gang sortiert"),
  ),
  "es": dict(
+  invite_title='Te han invitado a RightSetFret', invite_text='Descarga la app, toca «¿Te invitaron? Introduce tu código» en la pantalla de bienvenida e introduce este código. Ambos recibís 5 importaciones extra.', invite_copy='Copiar código', invite_copied='Copiado',
   title="RightSetFret — Del reel a la receta en 5 segundos",
   desc="Comparte una receta de Instagram, TikTok o YouTube con RightSetFret y obtén al momento una ficha de receta clara con ingredientes, pasos y foto. Planificador semanal y lista de la compra incluidos. 10 importaciones gratis.",
   h1="Del reel a la receta en 5 segundos.",
@@ -247,6 +252,20 @@ def render(lang):
   if (t === 'recept' && p.get('id')) scheme = 'rightsetfret://recept?id=' + encodeURIComponent(p.get('id'));
   else if (t === 'lijst' && p.get('code')) scheme = 'rightsetfret://lijst?code=' + encodeURIComponent(p.get('code'));
   if (scheme) { setTimeout(function(){ window.location.href = scheme; }, 300); }
+  var code = p.get('code');
+  if (t === 'uitnodiging' && code && /^[A-Za-z2-9]{6}$/.test(code)) {
+    // Dit script staat in <head>; de kaart bestaat pas na het parsen van de body.
+    document.addEventListener('DOMContentLoaded', function(){
+      var card = document.getElementById('invite');
+      if (!card) return;
+      card.querySelector('.invite-code').textContent = code.toUpperCase();
+      card.hidden = false;
+      var btn = card.querySelector('button');
+      btn.addEventListener('click', function(){
+        navigator.clipboard.writeText(code.toUpperCase()).then(function(){ btn.textContent = btn.getAttribute('data-copied'); });
+      });
+    });
+  }
 })();
 </script>"""
     extra = deeplink + f'\n<script type="application/ld+json">{faq_ld}</script>\n<script type="application/ld+json">{app_ld}</script>'
@@ -293,6 +312,12 @@ def render(lang):
 
 <header class="hero">
     <div class="wrap">
+        <div class="invite-card" id="invite" hidden>
+            <span class="kicker">{esc(t["invite_title"])}</span>
+            <div class="invite-code">------</div>
+            <p>{esc(t["invite_text"])}</p>
+            <button type="button" class="btn btn-ghost" data-copied="{esc(t["invite_copied"])}">{esc(t["invite_copy"])}</button>
+        </div>
         <h1>{esc(t["h1"])}</h1>
         <p class="sub">{esc(t["sub"])}</p>
         <div class="cta">
