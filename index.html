@@ -29,6 +29,20 @@
   if (t === 'recept' && p.get('id')) scheme = 'rightsetfret://recept?id=' + encodeURIComponent(p.get('id'));
   else if (t === 'lijst' && p.get('code')) scheme = 'rightsetfret://lijst?code=' + encodeURIComponent(p.get('code'));
   if (scheme) { setTimeout(function(){ window.location.href = scheme; }, 300); }
+  var code = p.get('code');
+  if (t === 'uitnodiging' && code && /^[A-Za-z2-9]{6}$/.test(code)) {
+    // Dit script staat in <head>; de kaart bestaat pas na het parsen van de body.
+    document.addEventListener('DOMContentLoaded', function(){
+      var card = document.getElementById('invite');
+      if (!card) return;
+      card.querySelector('.invite-code').textContent = code.toUpperCase();
+      card.hidden = false;
+      var btn = card.querySelector('button');
+      btn.addEventListener('click', function(){
+        navigator.clipboard.writeText(code.toUpperCase()).then(function(){ btn.textContent = btn.getAttribute('data-copied'); });
+      });
+    });
+  }
 })();
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Moet ik een account maken?", "acceptedAnswer": {"@type": "Answer", "text": "Nee. Je begint meteen. Een account heb je pas nodig voor sync tussen toestellen, de gedeelde gezinslijst en de community."}}, {"@type": "Question", "name": "Werkt het zonder de app te openen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Delen vanuit Instagram of TikTok is genoeg — RightSetFret verwerkt het recept op de achtergrond en meldt zich als de fiche klaar is."}}, {"@type": "Question", "name": "Wat als de reel geen ingrediënten noemt?", "acceptedAnswer": {"@type": "Answer", "text": "RightSetFret combineert beeld, gesproken tekst en bijschrift. Ontbreekt er toch iets, dan vul je het zo aan in de fiche."}}, {"@type": "Question", "name": "Bewaart RightSetFret de video?", "acceptedAnswer": {"@type": "Answer", "text": "Nee. De fiche verwijst naar de originele video en de maker; de video zelf blijft op het platform."}}, {"@type": "Question", "name": "Wat is gratis en wat niet?", "acceptedAnswer": {"@type": "Answer", "text": "De eerste 10 imports zijn gratis, handmatig recepten toevoegen is altijd gratis, en je collectie bekijken en exporteren blijft gratis. Onbeperkt importeren, de AI-weekplanner en gezinsdelen zitten in het abonnement — 7 dagen gratis te proberen."}}, {"@type": "Question", "name": "Op welke toestellen werkt het?", "acceptedAnswer": {"@type": "Answer", "text": "iPhone met iOS 26 of nieuwer. Op iPad draait de iPhone-versie."}}]}</script>
@@ -79,6 +93,12 @@ src="https://www.facebook.com/tr?id=1018910594260070&ev=PageView&noscript=1"
 
 <header class="hero">
     <div class="wrap">
+        <div class="invite-card" id="invite" hidden>
+            <span class="kicker">Je bent uitgenodigd voor RightSetFret</span>
+            <div class="invite-code">------</div>
+            <p>Download de app, tik op het welkomscherm op ‘Uitgenodigd? Voer je code in’ en vul deze code in. Jullie krijgen allebei 5 extra imports.</p>
+            <button type="button" class="btn btn-ghost" data-copied="Gekopieerd">Kopieer code</button>
+        </div>
         <h1>Van reel naar recept in 5 seconden.</h1>
         <p class="sub">Zie je een recept op Instagram, TikTok of YouTube? Deel het met RightSetFret en je hebt een nette fiche — ingrediënten, stappen en foto, in jouw taal.</p>
         <div class="cta">

@@ -29,6 +29,20 @@
   if (t === 'recept' && p.get('id')) scheme = 'rightsetfret://recept?id=' + encodeURIComponent(p.get('id'));
   else if (t === 'lijst' && p.get('code')) scheme = 'rightsetfret://lijst?code=' + encodeURIComponent(p.get('code'));
   if (scheme) { setTimeout(function(){ window.location.href = scheme; }, 300); }
+  var code = p.get('code');
+  if (t === 'uitnodiging' && code && /^[A-Za-z2-9]{6}$/.test(code)) {
+    // Dit script staat in <head>; de kaart bestaat pas na het parsen van de body.
+    document.addEventListener('DOMContentLoaded', function(){
+      var card = document.getElementById('invite');
+      if (!card) return;
+      card.querySelector('.invite-code').textContent = code.toUpperCase();
+      card.hidden = false;
+      var btn = card.querySelector('button');
+      btn.addEventListener('click', function(){
+        navigator.clipboard.writeText(code.toUpperCase()).then(function(){ btn.textContent = btn.getAttribute('data-copied'); });
+      });
+    });
+  }
 })();
 </script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Brauche ich ein Konto?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Du legst sofort los. Ein Konto brauchst du nur für Sync zwischen Geräten, die geteilte Familienliste und die Community."}}, {"@type": "Question", "name": "Geht es, ohne die App zu öffnen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Teilen aus Instagram oder TikTok reicht — RightSetFret verarbeitet das Rezept im Hintergrund und meldet sich, wenn die Karte fertig ist."}}, {"@type": "Question", "name": "Was, wenn das Reel keine Zutaten nennt?", "acceptedAnswer": {"@type": "Answer", "text": "RightSetFret kombiniert Bild, Stimme und Bildunterschrift. Fehlt trotzdem etwas, ergänzt du es in der Karte mit einem Tipp."}}, {"@type": "Question", "name": "Speichert RightSetFret das Video?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Die Karte verweist auf das Original und die Urheberin oder den Urheber; das Video bleibt auf der Plattform."}}, {"@type": "Question", "name": "Was ist gratis und was nicht?", "acceptedAnswer": {"@type": "Answer", "text": "Die ersten 10 Importe, Rezepte von Hand anlegen, und deine Sammlung ansehen und exportieren. Unbegrenzt importieren, der KI-Wochenplaner und Familienfreigabe sind im Abo — 7 Tage kostenlos testen."}}, {"@type": "Question", "name": "Auf welchen Geräten läuft es?", "acceptedAnswer": {"@type": "Answer", "text": "iPhone mit iOS 26 oder neuer. Auf dem iPad läuft die iPhone-Version."}}]}</script>
@@ -79,6 +93,12 @@ src="https://www.facebook.com/tr?id=1018910594260070&ev=PageView&noscript=1"
 
 <header class="hero">
     <div class="wrap">
+        <div class="invite-card" id="invite" hidden>
+            <span class="kicker">Du bist zu RightSetFret eingeladen</span>
+            <div class="invite-code">------</div>
+            <p>Lade die App, tippe auf dem Willkommensbildschirm auf „Eingeladen? Code eingeben“ und gib diesen Code ein. Ihr bekommt beide 5 Extra-Importe.</p>
+            <button type="button" class="btn btn-ghost" data-copied="Kopiert">Code kopieren</button>
+        </div>
         <h1>Vom Reel zum Rezept in 5 Sekunden.</h1>
         <p class="sub">Siehst du ein Rezept auf Instagram, TikTok oder YouTube? Teile es mit RightSetFret und du hast eine saubere Karte — Zutaten, Schritte und Foto, in deiner Sprache.</p>
         <div class="cta">
