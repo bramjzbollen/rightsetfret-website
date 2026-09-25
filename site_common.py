@@ -35,13 +35,13 @@ CHROME = {
                read_also="Lee también", ig_page="Guardar recetas de Instagram", tt_page="Guardar recetas de TikTok", legal="© 2026 PLAN B · Belgium", lang_aria="Idioma"),
 }
 
-# Landingspagina's per taal (de/es hebben er nog geen → Engelse variant).
+# Landingspagina's per taal.
 LANDING = {
     "nl": ("instagram-recept-opslaan.html", "tiktok-recept-bewaren.html"),
     "en": ("save-instagram-recipes.html", "save-tiktok-recipes.html"),
     "fr": ("enregistrer-recettes-instagram.html", "enregistrer-recettes-tiktok.html"),
-    "de": ("/en/save-instagram-recipes.html", "/en/save-tiktok-recipes.html"),
-    "es": ("/en/save-instagram-recipes.html", "/en/save-tiktok-recipes.html"),
+    "de": ("rezepte-aus-instagram-speichern.html", "rezepte-aus-tiktok-speichern.html"),
+    "es": ("guardar-recetas-de-instagram.html", "guardar-recetas-de-tiktok.html"),
 }
 
 def esc(s): return html.escape(s, quote=True)

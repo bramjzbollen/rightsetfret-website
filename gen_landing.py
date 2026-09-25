@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Genereert SEO-landingspagina's (Instagram / TikTok) voor nl, en, fr in de
+"""Genereert SEO-landingspagina's (Instagram / TikTok) voor nl, en, fr, de, es in de
 website-repo, plus sitemap.xml en robots.txt. Bron van waarheid: dit script."""
 import os, json, re, html
 from site_common import head as sc_head, nav as sc_nav, footer as sc_footer, badge as sc_badge
@@ -63,6 +63,28 @@ L = {
             also="Fonctionne aussi bien avec TikTok, Pinterest, Facebook, YouTube, n’importe quel site de recettes, une capture d’écran ou une photo de magazine.",
             also_q="Ça marche aussi avec TikTok, YouTube ou les sites web ?",
             also_a="Oui. RightSetFret importe depuis Instagram, TikTok, Pinterest, Facebook et YouTube, depuis n’importe quel site de recettes, et même depuis une capture d’écran ou une photo de livre ou de magazine. Colle le lien ou partage la photo — la fiche est la même."),
+ "de": dict(dir="de/", code="DE", flag="🇩🇪", support="Support", privacy="Datenschutzerklärung", privacy_nav="Datenschutz",
+            badge_small="Laden im", badge_big="App Store", aria_dl="RightSetFret im App Store laden",
+            soon="Kostenlos laden · 10 Importe gratis · danach 7 Tage kostenlos testen",
+            steps_title="So funktioniert’s", steps_sub="Drei Schritte, kein Aufwand.",
+            video_title="In Aktion", faq_title="Häufige Fragen",
+            closing_title="Probier’s heute Abend", closing_sub="Lade RightSetFret und speichere dein erstes Rezept in unter einer Minute.",
+            closing_soon="Rezepte ansehen und exportieren bleibt für immer kostenlos", legal="© 2026 PLAN B · Belgium",
+            more="Auch lesen", video="tutorial-import_tutorial.mp4", poster="tutorial-import_tutorial.jpg",
+            also="Funktioniert genauso mit TikTok, Pinterest, Facebook, YouTube, jeder Rezept-Website, einem Screenshot oder einem Foto aus einer Zeitschrift.",
+            also_q="Geht das auch mit TikTok, YouTube oder normalen Websites?",
+            also_a="Ja. RightSetFret importiert aus Instagram, TikTok, Pinterest, Facebook und YouTube, von jeder Rezept-Website und sogar aus einem Screenshot oder einem Foto aus Kochbuch oder Zeitschrift. Link einfügen oder Foto teilen – die Karte sieht gleich aus."),
+ "es": dict(dir="es/", code="ES", flag="🇪🇸", support="Soporte", privacy="Política de privacidad", privacy_nav="Privacidad",
+            badge_small="Descargar en el", badge_big="App Store", aria_dl="Descargar RightSetFret en el App Store",
+            soon="Descarga gratis · 10 importaciones gratis · luego 7 días de prueba gratis",
+            steps_title="Cómo funciona", steps_sub="Tres pasos, sin complicaciones.",
+            video_title="En acción", faq_title="Preguntas frecuentes",
+            closing_title="Pruébalo esta noche", closing_sub="Descarga RightSetFret y guarda tu primera receta en menos de un minuto.",
+            closing_soon="Ver y exportar tus recetas es gratis para siempre", legal="© 2026 PLAN B · Belgium",
+            more="Lee también", video="tutorial-import_tutorial.mp4", poster="tutorial-import_tutorial.jpg",
+            also="Funciona igual de bien con TikTok, Pinterest, Facebook, YouTube, cualquier web de recetas, una captura de pantalla o una foto de una revista.",
+            also_q="¿Funciona también con TikTok, YouTube o webs normales?",
+            also_a="Sí. RightSetFret importa desde Instagram, TikTok, Pinterest, Facebook y YouTube, desde cualquier web de recetas e incluso desde una captura o una foto de un libro o revista. Pega el enlace o comparte la foto: la ficha queda igual."),
 }
 
 # Per pagina: slug per taal, teksten. {P} = platform-naam.
@@ -104,6 +126,31 @@ PAGES = {
          ("Et si le reel ne donne pas les ingrédients ?","RightSetFret combine l’image, la voix et la légende. S’il manque encore quelque chose, tu le complètes dans la fiche en un geste."),
          ("Enregistrer des recettes Instagram, c’est gratuit ?","Les 10 premiers imports sont gratuits. Ensuite tu choisis un abonnement avec 7 jours d’essai gratuit. Consulter et exporter tes recettes reste gratuit pour toujours."),
          ("RightSetFret conserve-t-il la vidéo ?","Non. La fiche renvoie vers le reel original et son auteur ; la vidéo reste sur Instagram.")]),
+
+  "de": dict(slug="rezepte-aus-instagram-speichern.html", ct="web_ig_de",
+    title="Instagram-Rezept als Rezeptkarte speichern — RightSetFret",
+    desc="Verwandle Instagram-Reels in Sekunden in übersichtliche Rezeptkarten mit Zutaten, Schritten und Foto. Reel mit RightSetFret teilen – fertig.",
+    h1="Rezepte aus Instagram in Sekunden speichern",
+    tagline="Siehst du ein Reel mit einem Rezept? Teile es mit RightSetFret und du bekommst eine saubere Karte mit Zutaten, Schritten und Foto – in deiner Sprache. Keine Screenshots mehr, kein Scrollen durch Bildunterschriften.",
+    steps=[("📲","Tippe unter dem Reel auf Teilen","Öffne das Reel in Instagram, tippe auf das Teilen-Symbol und wähle RightSetFret im Menü."),
+           ("✨","Kurz warten","RightSetFret liest Video, Stimme und Bildunterschrift und macht daraus Zutaten und Schritte."),
+           ("🍳","Loskochen","Dein Rezept ist in deiner Sammlung: Portionen anpassen, Zutaten auf die Liste setzen oder in die Woche einplanen.")],
+    faq=[("Muss ich die App öffnen, um ein Reel zu speichern?","Nein. Teilen aus Instagram reicht – RightSetFret verarbeitet das Rezept im Hintergrund und meldet sich, wenn die Karte fertig ist."),
+         ("Was, wenn das Reel keine Zutaten nennt?","RightSetFret kombiniert Bild, Stimme und Bildunterschrift. Fehlt trotzdem etwas, ergänzt du es in der Karte mit einem Tipp."),
+         ("Ist das Speichern von Instagram-Rezepten kostenlos?","Die ersten 10 Importe sind gratis. Danach wählst du ein Abo mit 7 Tagen kostenlos testen. Gespeicherte Rezepte ansehen und exportieren bleibt für immer kostenlos."),
+         ("Speichert RightSetFret das Video?","Nein. Die Karte verweist auf das Original-Reel und seine Urheberin oder seinen Urheber; das Video bleibt auf Instagram.")]),
+  "es": dict(slug="guardar-recetas-de-instagram.html", ct="web_ig_es",
+    title="Guardar una receta de Instagram como ficha — RightSetFret",
+    desc="Convierte los reels de Instagram en fichas de receta claras con ingredientes, pasos y foto, en segundos. Comparte el reel con RightSetFret y listo.",
+    h1="Guarda recetas de Instagram en segundos",
+    tagline="¿Ves un reel con una receta? Compártelo con RightSetFret y tendrás una ficha clara con ingredientes, pasos y foto, en tu idioma. Se acabaron las capturas y el scroll por los pies de foto.",
+    steps=[("📲","Toca Compartir bajo el reel","Abre el reel en Instagram, toca el icono de compartir y elige RightSetFret en el menú."),
+           ("✨","Espera un momento","RightSetFret lee el vídeo, la voz y el pie de foto y los convierte en ingredientes y pasos."),
+           ("🍳","A cocinar","Tu receta está en tu colección: ajusta las raciones, pon los ingredientes en tu lista o planifícala en tu semana.")],
+    faq=[("¿Tengo que abrir la app para guardar un reel?","No. Compartir desde Instagram es suficiente: RightSetFret procesa la receta en segundo plano y te avisa cuando la ficha está lista."),
+         ("¿Y si el reel no dice los ingredientes?","RightSetFret combina la imagen, la voz y el pie de foto. Si aun así falta algo, lo completas en la ficha con un toque."),
+         ("¿Guardar recetas de Instagram es gratis?","Las primeras 10 importaciones son gratis. Luego eliges una suscripción con 7 días de prueba gratis. Ver y exportar tus recetas guardadas es gratis para siempre."),
+         ("¿RightSetFret guarda el vídeo?","No. La ficha enlaza al reel original y a su autor; el vídeo se queda en Instagram.")]),
  },
  "tiktok": {
   "nl": dict(slug="tiktok-recept-bewaren.html", ct="web_tt_nl",
@@ -142,6 +189,31 @@ PAGES = {
          ("Ça marche si les quantités sont seulement dites à l’oral ?","Oui. RightSetFret écoute la voix et la combine avec l’image et la légende. S’il manque quelque chose, tu le complètes en un geste."),
          ("Enregistrer des recettes TikTok, c’est gratuit ?","Les 10 premiers imports sont gratuits. Ensuite tu choisis un abonnement avec 7 jours d’essai gratuit. Consulter et exporter tes recettes reste gratuit pour toujours."),
          ("RightSetFret conserve-t-il la vidéo ?","Non. La fiche renvoie vers la vidéo originale et son auteur ; la vidéo reste sur TikTok.")]),
+
+  "de": dict(slug="rezepte-aus-tiktok-speichern.html", ct="web_tt_de",
+    title="TikTok-Rezept als Rezeptkarte speichern — RightSetFret",
+    desc="Verwandle TikTok-Videos in Sekunden in übersichtliche Rezeptkarten mit Zutaten, Schritten und Foto. Video mit RightSetFret teilen – fertig.",
+    h1="Rezepte aus TikTok in Sekunden speichern",
+    tagline="Ein TikTok mit einem Rezept, das du dir merken willst? Teile es mit RightSetFret und du bekommst eine saubere Karte mit Zutaten, Schritten und Foto – in deiner Sprache. Nie wieder in gelikten Videos wühlen.",
+    steps=[("📲","Tippe neben dem Video auf Teilen","Öffne das Video in TikTok, tippe auf den Teilen-Pfeil und wähle RightSetFret im Menü."),
+           ("✨","Kurz warten","RightSetFret liest Video, Stimme und Bildunterschrift und macht daraus Zutaten und Schritte."),
+           ("🍳","Loskochen","Dein Rezept ist in deiner Sammlung: Portionen anpassen, Zutaten auf die Liste setzen oder in die Woche einplanen.")],
+    faq=[("Muss ich die App öffnen, um ein TikTok zu speichern?","Nein. Teilen aus TikTok reicht – RightSetFret verarbeitet das Rezept im Hintergrund und meldet sich, wenn die Karte fertig ist."),
+         ("Klappt es, wenn die Mengen nur gesprochen werden?","Ja. RightSetFret hört die Stimme und kombiniert sie mit Bild und Bildunterschrift. Fehlt etwas, ergänzt du es mit einem Tipp."),
+         ("Ist das Speichern von TikTok-Rezepten kostenlos?","Die ersten 10 Importe sind gratis. Danach wählst du ein Abo mit 7 Tagen kostenlos testen. Gespeicherte Rezepte ansehen und exportieren bleibt für immer kostenlos."),
+         ("Speichert RightSetFret das Video?","Nein. Die Karte verweist auf das Originalvideo und seine Urheberin oder seinen Urheber; das Video bleibt auf TikTok.")]),
+  "es": dict(slug="guardar-recetas-de-tiktok.html", ct="web_tt_es",
+    title="Guardar una receta de TikTok como ficha — RightSetFret",
+    desc="Convierte los vídeos de TikTok en fichas de receta claras con ingredientes, pasos y foto, en segundos. Comparte el vídeo con RightSetFret y listo.",
+    h1="Guarda recetas de TikTok en segundos",
+    tagline="¿Un TikTok con una receta que quieres recordar? Compártelo con RightSetFret y tendrás una ficha clara con ingredientes, pasos y foto, en tu idioma. Nunca más rebuscar entre tus vídeos guardados.",
+    steps=[("📲","Toca Compartir junto al vídeo","Abre el vídeo en TikTok, toca la flecha de compartir y elige RightSetFret en el menú."),
+           ("✨","Espera un momento","RightSetFret lee el vídeo, la voz y el pie de foto y los convierte en ingredientes y pasos."),
+           ("🍳","A cocinar","Tu receta está en tu colección: ajusta las raciones, pon los ingredientes en tu lista o planifícala en tu semana.")],
+    faq=[("¿Tengo que abrir la app para guardar un TikTok?","No. Compartir desde TikTok es suficiente: RightSetFret procesa la receta en segundo plano y te avisa cuando la ficha está lista."),
+         ("¿Funciona si las cantidades solo se dicen en voz alta?","Sí. RightSetFret escucha la voz y la combina con la imagen y el pie de foto. Si falta algo, lo completas con un toque."),
+         ("¿Guardar recetas de TikTok es gratis?","Las primeras 10 importaciones son gratis. Luego eliges una suscripción con 7 días de prueba gratis. Ver y exportar tus recetas guardadas es gratis para siempre."),
+         ("¿RightSetFret guarda el vídeo?","No. La ficha enlaza al vídeo original y a su autor; el vídeo se queda en TikTok.")]),
  },
 }
 LANG_NAMES = [("nl","🇳🇱","Nederlands","/"),("en","🇬🇧","English","/en/"),("fr","🇫🇷","Français","/fr/"),("de","🇩🇪","Deutsch","/de/"),("es","🇪🇸","Español","/es/")]
@@ -151,7 +223,7 @@ def url(lang, slug): return f"{SITE}/{L[lang]['dir']}{slug}"
 def render(kind, lang):
     p = PAGES[kind][lang]; l = L[lang]; other = "tiktok" if kind == "instagram" else "instagram"
     asset = "" if lang == "nl" else "/"            # subfolders verwijzen naar root-assets zoals en/index.html
-    hreflang = "\n".join(f'<link rel="alternate" hreflang="{lg}" href="{url(lg, PAGES[kind][lg]["slug"])}">' for lg in ("nl","en","fr"))
+    hreflang = "\n".join(f'<link rel="alternate" hreflang="{lg}" href="{url(lg, PAGES[kind][lg]["slug"])}">' for lg in ("nl","en","fr","de","es"))
     hreflang += f'\n<link rel="alternate" hreflang="x-default" href="{url("nl", PAGES[kind]["nl"]["slug"])}">'
     CUR = ' aria-current="page"'
     langlist = "\n".join(f'                    <li><a href="{path}" hreflang="{lg}"{CUR if lg==lang else ""}><span class="flag">{fl}</span> {nm}</a></li>' for lg,fl,nm,path in LANG_NAMES)
@@ -166,7 +238,7 @@ def render(kind, lang):
     faq_ld = json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in faqs]}, ensure_ascii=False)
     app_ld = json.dumps({"@context":"https://schema.org","@type":"SoftwareApplication","name":"RightSetFret","operatingSystem":"iOS","applicationCategory":"LifestyleApplication",
                          "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"url":f"https://apps.apple.com/app/rightsetfret/id{APP_ID}"}, ensure_ascii=False)
-    alt = {lg: f"{L[lg]['dir']}{PAGES[kind][lg]['slug']}" for lg in ("nl","en","fr")}
+    alt = {lg: f"{L[lg]['dir']}{PAGES[kind][lg]['slug']}" for lg in ("nl","en","fr","de","es")}
     extra = f'<script type="application/ld+json">{faq_ld}</script>\n<script type="application/ld+json">{app_ld}</script>'
     head_html = sc_head(lang, p["title"], p["desc"], p["slug"], alt, extra=extra)
     nav_html = sc_nav(lang, current=p["slug"])
@@ -228,7 +300,7 @@ def render(kind, lang):
 
 written = []
 for kind in PAGES:
-    for lang in ("nl","en","fr"):
+    for lang in ("nl","en","fr","de","es"):
         p = PAGES[kind][lang]; path = os.path.join(ROOT, L[lang]["dir"], p["slug"])
         open(path, "w").write(render(kind, lang)); written.append(url(lang, p["slug"]))
 # sitemap + robots
