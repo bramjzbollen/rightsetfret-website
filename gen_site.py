@@ -238,7 +238,18 @@ def render(lang):
     app_ld = json.dumps({"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "RightSetFret", "operatingSystem": "iOS", "applicationCategory": "LifestyleApplication",
                          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "1"},
                          "url": f"https://apps.apple.com/app/rightsetfret/id{APP_ID}"}, ensure_ascii=False)
-    extra = f'<script type="application/ld+json">{faq_ld}</script>\n<script type="application/ld+json">{app_ld}</script>'
+    # Gedeelde recept-/lijst-links (rightsetfret://…) openen de app; zonder app blijft
+    # deze pagina als nette terugval staan. Stond op de oude homepage; hier bewaard.
+    deeplink = """<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  var t = p.get('type'), scheme = null;
+  if (t === 'recept' && p.get('id')) scheme = 'rightsetfret://recept?id=' + encodeURIComponent(p.get('id'));
+  else if (t === 'lijst' && p.get('code')) scheme = 'rightsetfret://lijst?code=' + encodeURIComponent(p.get('code'));
+  if (scheme) { setTimeout(function(){ window.location.href = scheme; }, 300); }
+})();
+</script>"""
+    extra = deeplink + f'\n<script type="application/ld+json">{faq_ld}</script>\n<script type="application/ld+json">{app_ld}</script>'
     chips = "\n".join(f'            <li{STAR if ch.startswith("★") else ""}>{esc(ch)}</li>' for ch in t["chips"])
     floats = "\n".join(f'            <span class="float-chip c{i+1}">{ICON[ic]}{esc(name)}</span>' for i, (ic, name) in enumerate(zip(FLOAT_ICONS, t["floats"])))
     sources = "\n".join(f'            <li>{ICON[ic]}<span>{esc(name)}</span></li>' for ic, name in zip(SOURCE_ICONS, t["sources"]))

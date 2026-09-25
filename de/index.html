@@ -22,6 +22,15 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/styles.css">
+<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  var t = p.get('type'), scheme = null;
+  if (t === 'recept' && p.get('id')) scheme = 'rightsetfret://recept?id=' + encodeURIComponent(p.get('id'));
+  else if (t === 'lijst' && p.get('code')) scheme = 'rightsetfret://lijst?code=' + encodeURIComponent(p.get('code'));
+  if (scheme) { setTimeout(function(){ window.location.href = scheme; }, 300); }
+})();
+</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Brauche ich ein Konto?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Du legst sofort los. Ein Konto brauchst du nur für Sync zwischen Geräten, die geteilte Familienliste und die Community."}}, {"@type": "Question", "name": "Geht es, ohne die App zu öffnen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Teilen aus Instagram oder TikTok reicht — RightSetFret verarbeitet das Rezept im Hintergrund und meldet sich, wenn die Karte fertig ist."}}, {"@type": "Question", "name": "Was, wenn das Reel keine Zutaten nennt?", "acceptedAnswer": {"@type": "Answer", "text": "RightSetFret kombiniert Bild, Stimme und Bildunterschrift. Fehlt trotzdem etwas, ergänzt du es in der Karte mit einem Tipp."}}, {"@type": "Question", "name": "Speichert RightSetFret das Video?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Die Karte verweist auf das Original und die Urheberin oder den Urheber; das Video bleibt auf der Plattform."}}, {"@type": "Question", "name": "Was ist gratis und was nicht?", "acceptedAnswer": {"@type": "Answer", "text": "Die ersten 10 Importe, Rezepte von Hand anlegen, und deine Sammlung ansehen und exportieren. Unbegrenzt importieren, der KI-Wochenplaner und Familienfreigabe sind im Abo — 7 Tage kostenlos testen."}}, {"@type": "Question", "name": "Auf welchen Geräten läuft es?", "acceptedAnswer": {"@type": "Answer", "text": "iPhone mit iOS 26 oder neuer. Auf dem iPad läuft die iPhone-Version."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "RightSetFret", "operatingSystem": "iOS", "applicationCategory": "LifestyleApplication", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "aggregateRating": {"@type": "AggregateRating", "ratingValue": "5.0", "ratingCount": "1"}, "url": "https://apps.apple.com/app/rightsetfret/id6784261188"}</script>
 <!-- Meta Pixel Code -->
